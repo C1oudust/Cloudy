@@ -57,7 +57,7 @@ export default {
 		}
 		.center {
 			flex: 1;
-			padding-left: 10px;
+			padding-left: 20px;
 			img {
 				width: 44px;
 				height: 22px;
@@ -71,7 +71,7 @@ export default {
 			height: 100%;
 			img {
 				.img-size-xs();
-				margin-right: 5px;
+				margin-right: @spacing-row-base;
 			}
 		}
 	}
