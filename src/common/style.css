@@ -4,6 +4,10 @@
 @color-error : rgba (255, 93, 91, 1);
 @text-color : rgba (39, 40, 50, 1);
 @text-color-grey : rgba (39, 40, 50, 0.6);
+.img-size-xs {
+  width: 24px;
+  height: 24px;
+}
 .img-size-sm {
   width: 32px;
   height: 32px;
