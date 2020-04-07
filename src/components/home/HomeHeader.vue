@@ -21,7 +21,7 @@
 
 <script>
 export default {
-	name: 'HelloWorld',
+	name: 'HomeHeader',
 
 }
 </script>
@@ -29,15 +29,10 @@ export default {
 <style lang="less" scoped>
 @import '../../common/style.less';
 .container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	font-size: @font-size-base;
 	.top-bar {
-		position: fixed;
-		top: 0;
-		left: 0;
+		display: flex;
+		align-items: center;
+
 		width: 100vw;
 		height: 50px;
 		background: @bg-color;
@@ -47,40 +42,29 @@ export default {
 
 		.left {
 			float: left;
+
 			img {
-				margin-top: 9px;
 				.img-size-sm(); // 32px
 				border-radius: @border-radius-sm;
 			}
 		}
 		.center {
-			position: absolute;
-			text-align: center;
-			top: 0;
-			left: 0;
-			bottom: 0;
-			right: 0;
-
-			margin: auto;
+			flex: 1;
+			padding-left: 10px;
 			img {
 				width: 44px;
 				height: 22px;
-				margin-top: 14px;
 			}
 		}
 		.right {
 			float: right;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			height: 100%;
-			.search {
-				display: inline-block;
-			}
-			.add {
-				display: inline-block;
-			}
 			img {
 				.img-size-xs();
-				margin-right: 10px;
-				margin-top: 13px;
+				margin-right: 5px;
 			}
 		}
 	}
