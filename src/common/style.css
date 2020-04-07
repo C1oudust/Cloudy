@@ -1,0 +1,18 @@
+@color-primary : rgba (255, 228, 49, 1);
+@color-success : rgba (87, 153, 255, 1);
+@color-warning : rgba (255, 93, 91, 1);
+@color-error : rgba (255, 93, 91, 1);
+@text-color : rgba (39, 40, 50, 1);
+@text-color-grey : rgba (39, 40, 50, 0.6);
+.img-size-sm {
+  width: 32px;
+  height: 32px;
+}
+.img-size-base {
+  width: 64px;
+  height: 64px;
+}
+.img-size-lg {
+  width: 128px;
+  height: 128px;
+}
