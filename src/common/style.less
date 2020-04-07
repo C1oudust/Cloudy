@@ -1,15 +1,15 @@
 // 页面样式统一
 
 // 行为相关
-@color-primary: rgba (255, 228, 49, 1);
-@color-success: rgba (87, 153, 255, 1);
-@color-warning: rgba (255, 93, 91, 1);
-@color-error: rgba (255, 93, 91, 1);
+@color-primary: rgb(255, 228, 49);
+@color-success: rgb(87, 153, 255);
+@color-warning: rgb(255, 93, 91);
+@color-error: rgb(255, 93, 91);
 
 // 文字颜色
-@text-color: rgba (39, 40, 50, 1); // 基本色
+@text-color: rgb(39, 40, 50); // 基本色
 @text-color-inverse: #ffffff; // 反色
-@text-color-grey: rgba (39, 40, 50, 0.6); // 灰色
+@text-color-grey: rgba(39, 40, 50, 0.6); // 灰色
 @text-color-placeholder: #808080;
 @text-color-disable: rgba(39, 40, 50, 0.4);
 
@@ -23,7 +23,7 @@
 @border-color: rgba(39, 40, 50, 0.1);
 
 // 文字尺寸
-@font-size-sm: 12px;
+@font-size-sm: 13px;
 @font-size-base: 16px;
 @font-size-lg: 22px;
 
@@ -75,3 +75,10 @@
 
 // 导航栏
 @header-height: 50px;
+
+// 多余文字变成 ...
+.ellipsisText {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

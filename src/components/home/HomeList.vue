@@ -1,18 +1,32 @@
 <template>
 	<div class="container">
-		<div class="apply"></div>
-		<div class="friends">
+		<div class="apply">
 			<div class="friend-list">
 				<div class="left">
-					<span class="tip"></span>
-					<img src="../../assets/img/one.jpg" alt />
+					<span class="tip">9</span>
+					<img src="../../../public/static/img/add_user.png" alt />
 				</div>
 				<div class="right">
 					<div class="info">
-						<div class="name">小明</div>
+						<div class="name">好友申请</div>
 						<div class="time">13:43</div>
 					</div>
-					<div class="msg">今天天气不错啊！</div>
+					<div class="msg">茫茫人海，相遇即是缘分！</div>
+				</div>
+			</div>
+		</div>
+		<div class="friends">
+			<div class="friend-list" v-for="item in friends" :key="item.id">
+				<div class="left">
+					<span class="tip">{{item.tip}}</span>
+					<img :src="item.imgUrl" alt />
+				</div>
+				<div class="right">
+					<div class="info">
+						<div class="name">{{item.name}}</div>
+						<div class="time">{{changeTime(item.time)}}</div>
+					</div>
+					<div class="msg">{{item.content}}</div>
 				</div>
 			</div>
 		</div>
@@ -20,8 +34,32 @@
 </template>
 
 <script>
+import data from '../../common/js/data';
+import myfun from '../../common/js/myfun'
 export default {
-	name: 'HomeList'
+	name: 'HomeList',
+	data() {
+		return {
+			friends: []
+		}
+	},
+	mounted() {
+		this.getFriends();
+	},
+	methods: {
+		changeTime: function (date) {
+			return myfun.formatDataTime(date)
+		},
+		getFriends: function () {
+			if (data.friends()) {
+				this.friends = data.friends();
+				this.friends.forEach((item) => {
+					item.imgUrl = './static/img/' + item.imgUrl;
+				})
+
+			}
+		}
+	}
 }
 </script>
 
@@ -35,16 +73,80 @@ export default {
 	flex-direction: column;
 	font-size: @font-size-base;
 	padding: 0 @spacing-col-base;
+	padding-top: 50px;
 	.apply {
-	}
-	.friends {
 		.friend-list {
 			.left {
-				float: left;
+				position: relative;
+				border-radius: @border-radius-base;
+				background-color: @color-primary;
+
+				.img-size-base();
 				img {
+					position: absolute;
+					left: 50%;
+					top: 50%;
+					transform: translate(-50%, -50%);
 					.img-size-sm();
-					border-radius: @border-radius-base;
 				}
+			}
+		}
+	}
+	.friends {
+		height: 100rem;
+	}
+	.friend-list {
+		&:active {
+			background-color: @bg-color-hover;
+		}
+		width: 100vw;
+		padding: @spacing-row-sm @spacing-row-base;
+		display: flex;
+		align-items: center;
+		border-bottom: solid 1px @border-color;
+		.left {
+			position: relative;
+			.tip {
+				padding: 0 2px;
+				text-align: center;
+				line-height: 20px;
+				font-size: @font-size-sm;
+				position: absolute;
+				top: -5px;
+				left: 50px;
+				height: 20px;
+				min-width: 20px;
+				color: @text-color-inverse;
+				background-color: @color-warning;
+				border-radius: @border-radius-circle;
+			}
+			img {
+				.img-size-base();
+				border-radius: @border-radius-base;
+			}
+		}
+		.right {
+			padding: 0 @spacing-row-base;
+			display: flex;
+			flex: 1;
+			flex-direction: column;
+			justify-content: right;
+			height: 100%;
+			.info {
+				padding-bottom: @spacing-col-sm;
+				display: flex;
+				justify-content: space-between;
+				.time {
+					color: @text-color-grey;
+					font-size: @font-size-sm;
+				}
+			}
+			.msg {
+				font-size: @font-size-sm;
+				color: @text-color-grey;
+				text-align: left;
+				max-width: 70vw;
+				.ellipsisText();
 			}
 		}
 	}

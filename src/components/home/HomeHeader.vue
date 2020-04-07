@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="top-bar">
 			<div class="left">
-				<img src="../../assets/img/one.jpg" alt />
+				<img src="../../../public/static/img/one.jpg" alt />
 			</div>
 			<div class="center">
 				<img src="../../assets/images/home/logo.png" alt />
@@ -29,7 +29,14 @@ export default {
 <style lang="less" scoped>
 @import '../../common/style.less';
 .container {
+	overflow: hidden;
 	.top-bar {
+		z-index: 99;
+		position: fixed;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
 		display: flex;
 		align-items: center;
 
