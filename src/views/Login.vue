@@ -2,7 +2,9 @@
 	<div class="container">
 		<div class="top-bar">
 			<div class="right">
-				<div class="register">注册</div>
+				<router-link to="/Register" tag="div">
+					<div class="register">注册</div>
+				</router-link>
 			</div>
 		</div>
 		<div class="logo">
@@ -55,6 +57,7 @@ export default {
 	.right {
 		float: right;
 		line-height: 50px;
+		padding: 0 @spacing-col-base;
 		height: 100%;
 		.register {
 			font-size: @font-size-base;
