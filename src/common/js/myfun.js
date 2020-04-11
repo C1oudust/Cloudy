@@ -43,4 +43,9 @@ export default {
       return Y + '/' + parseInt(M + 1) + '/' + D;
     }
   },
+
+  verifyEmail(e) {
+    var reg = /^([a-zA-Z]|[0-9])(\w|-)+@[a-zA-Z0-9]+(\.([a-zA-Z]{2,4})){1,2}$/;
+    return reg.test(e);
+  },
 };
