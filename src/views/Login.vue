@@ -13,18 +13,19 @@
 		<main>
 			<div class="title">登录</div>
 			<div class="input-box">
-				<input type="text" placeholder=" " />
+				<input @blur="getName" type="text" placeholder=" " />
 				<span class="input-label" data-placeholder="Username">用户名/邮箱</span>
 			</div>
 			<div class="input-box">
-				<input type="text" placeholder=" " />
+				<input @blur="getPwd" type="password" placeholder=" " />
 				<span data-placeholder="Password">密码</span>
 			</div>
 			<div class="tips">
 				<p v-show="error">用户名或密码错误</p>
+				<p v-show="blank">用户名或密码不能为空</p>
 			</div>
 			<div class="btn">
-				<input type="submit" class="loginBtn" value="登录" />
+				<input type="submit" class="loginBtn" @click="login" value="登录" />
 			</div>
 		</main>
 	</div>
@@ -36,6 +37,29 @@ export default {
 	data() {
 		return {
 			error: false,
+			blank: false,
+			username: '',
+			pwd: ''
+		}
+	},
+	methods: {
+		getName(e) {
+			this.username = e.target.value;
+		},
+		getPwd(e) {
+			this.pwd = e.target.value;
+		},
+		login() {
+			var info = {
+				username: this.username,
+				password: this.pwd,
+			}
+			if (this.username == "" || this.pwd == "") {
+				this.blank = true
+				return;
+			}
+			this.blank = false;
+			console.log(info)
 		}
 	}
 };

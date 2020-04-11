@@ -14,22 +14,25 @@
 			<div class="title">注册</div>
 			<div class="input-box">
 				<div class="input">
-					<input type="text" placeholder=" " />
+					<input @blur="verifyUserName" type="text" placeholder=" " />
 					<span class="input-label" data-placeholder="Username">用户名</span>
 					<p v-show="userNameExisted">用户名已存在</p>
+					<img v-show="usernameRight" class="success" src="@/assets/images/register/right.png" alt />
 				</div>
 			</div>
 			<div class="input-box">
 				<div class="input">
-					<input type="text" placeholder=" " />
+					<input @input="verifyEmail" type="text" placeholder=" " />
 					<span class="input-label" data-placeholder="Username">邮箱</span>
+					<p v-show="emailError">邮箱格式不正确</p>
+					<p v-show="emailExisted">邮箱已被注册</p>
 
 					<img v-show="emailRight" class="success" src="@/assets/images/register/right.png" alt />
 				</div>
 			</div>
 			<div class="input-box">
 				<div class="input">
-					<input :type="pwdType" placeholder=" " />
+					<input @input="getPwd" :type="pwdType" placeholder=" " />
 					<span class="input-label" data-placeholder="Password">密码</span>
 
 					<div @click="eyesClick">
@@ -38,23 +41,39 @@
 				</div>
 			</div>
 			<div class="btn">
-				<div :class="[{loginBtnActive:loginBtnActive},loginBtn]">注册</div>
+				<div @click="register" :class="[{loginBtnActive:canRegister},loginBtn]">注册</div>
 			</div>
 		</main>
 	</div>
 </template>
 
 <script>
+import my from '../common/js/myfun'
 export default {
 	name: 'RegisterPage',
 	data() {
 		return {
 			userNameExisted: false,
+			usernameRight: true,
+			emailExisted: false,
 			emailRight: false,
+			emailError: false,
 			pwdType: 'password',
 			eye: require("@/assets/images/register/eye_2.png"),
-			loginBtnActive: false,
-			loginBtn: 'loginBtn'
+			loginBtn: 'loginBtn',
+			userName: '',
+			email: '',
+			pwd: ''
+		}
+	},
+	watch: {
+		loginBtnActive: function () {
+			return this.canRegister;
+		}
+	},
+	computed: {
+		canRegister: function () {
+			return this.usernameRight && this.emailRight && this.pwd != ""
 		}
 	},
 	methods: {
@@ -62,7 +81,37 @@ export default {
 			this.close = !this.close
 			this.pwdType = this.pwdType === 'password' ? 'text' : 'password';
 			this.eye = this.eye == require("@/assets/images/register/eye_2.png") ? require("@/assets/images/register/eye.png") : require("@/assets/images/register/eye_2.png");
+		},
+		verifyUserName(e) {
+			var uname = e.target.value;
+			this.userName = uname;
+		},
+		verifyEmail(e) {
+			var email = e.target.value;
+			if (email != "") {
+				var re = my.verifyEmail(email)
+				this.emailRight = re;
+				this.emailError = !re;
+				this.email = email;
 
+			}
+			else {
+				this.emailRight = this.emailError = false;
+				this.pwd = "";
+			}
+
+		},
+		getPwd(e) {
+			this.pwd = e.target.value;
+		},
+		register() {
+			var info = {
+				username: this.userName,
+				email: this.email,
+				password: this.pwd,
+			}
+
+			console.log(info)
 		}
 	}
 };
@@ -197,9 +246,11 @@ main {
 			color: #ffffff;
 			cursor: pointer;
 			transition: 0.5s;
+			pointer-events: none;
 		}
 		.loginBtnActive {
 			background: linear-gradient(120deg, #3498db, #89f7fe, #66a6ff);
+			pointer-events: all;
 		}
 
 		.loginBtnActive:hover {
