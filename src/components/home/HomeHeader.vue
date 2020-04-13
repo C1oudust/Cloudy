@@ -8,9 +8,11 @@
 				<img src="../../assets/images/home/logo.png" alt />
 			</div>
 			<div class="right">
-				<div class="search">
-					<img src="../../assets/images/home/search.png" alt />
-				</div>
+				<router-link to="/Search">
+					<div class="search">
+						<img src="../../assets/images/home/search.png" alt />
+					</div>
+				</router-link>
 				<div class="add">
 					<img src="../../assets/images/home/add.png" alt />
 				</div>
@@ -51,7 +53,8 @@ export default {
 			float: left;
 
 			img {
-				.img-size-sm(); // 32px
+				width: 32px; // 32px
+				height: 32px;
 				border-radius: @border-radius-sm;
 			}
 		}
