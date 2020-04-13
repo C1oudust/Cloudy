@@ -18,7 +18,9 @@
 		<div class="friends">
 			<div class="friend-list" v-for="item in friends" :key="item.id">
 				<div class="left">
-					<span class="tip">{{item.tip}}</span>
+					<div class="tip">
+						<p>{{item.tip}}</p>
+					</div>
 					<img :src="item.imgUrl" alt />
 				</div>
 				<div class="right">
@@ -100,16 +102,14 @@ export default {
 			background-color: @bg-color-hover;
 		}
 		width: 100vw;
-		padding: @spacing-row-sm @spacing-row-base;
+		padding: @spacing-col-base @spacing-row-base;
 		display: flex;
 		align-items: center;
 		border-bottom: solid 1px @border-color;
 		.left {
 			position: relative;
+			.img-size-base();
 			.tip {
-				padding: 0 2px;
-				text-align: center;
-				line-height: 20px;
 				font-size: @font-size-sm;
 				position: absolute;
 				top: -5px;
@@ -119,6 +119,13 @@ export default {
 				color: @text-color-inverse;
 				background-color: @color-warning;
 				border-radius: @border-radius-circle;
+
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				p {
+					font-size: @font-size-sm;
+				}
 			}
 			img {
 				.img-size-base();
