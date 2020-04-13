@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="top-bar">
 			<div class="input">
-				<input type="text" placeholder="搜索用户/群" />
+				<input type="text" @input="search" placeholder="搜索用户/群" />
 				<div class="icon">
 					<img src="@/assets/images/search/search.png" alt />
 				</div>
@@ -19,6 +19,14 @@
 <script>
 export default {
 	name: 'SearchHeader',
+	methods: {
+		search(e) {
+			this.$store.commit('empty');
+			if (e.target.value.length > 0) {
+				this.$store.commit('searchUser', e.target.value.trim());
+			}
+		},
+	}
 
 }
 </script>

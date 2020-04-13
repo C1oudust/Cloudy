@@ -6,16 +6,14 @@
 </template>
 
 <script>
-import SearchHeader from '@/components/search/SearchHeader';
-import SearchList from '@/components/search/SearchList';
+import SearchHeader from '../components/search/SearchHeader';
+import SearchList from '../components/search/SearchList'
 export default {
 	name: 'SearchPage',
 	components: {
 		SearchHeader,
 		SearchList
+
 	}
 }
 </script>
-
-<style lang="less" scoped>
-</style>

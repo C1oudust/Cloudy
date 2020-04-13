@@ -44,15 +44,15 @@ export default {
 		}
 	},
 	mounted() {
-		this.getFriends();
+		this.getUserList();
 	},
 	methods: {
 		changeTime: function (date) {
 			return myfun.formatDataTime(date)
 		},
-		getFriends: function () {
-			if (data.friends()) {
-				this.friends = data.friends();
+		getUserList: function () {
+			if (data.users()) {
+				this.friends = data.users();
 				this.friends.forEach((item) => {
 					item.imgUrl = './static/img/' + item.imgUrl;
 				})

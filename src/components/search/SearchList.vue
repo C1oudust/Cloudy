@@ -1,14 +1,17 @@
 <template>
 	<div class="container">
-		<div class="search">
+		<div class="search" v-show="this.users != false">
 			<span class="type">用户</span>
-			<div class="search-list" v-for="item in friends" :key="item.id">
+			<div class="search-list" v-for="item of users" :key="item.id">
 				<div class="left">
 					<img :src="item.imgUrl" alt />
-					<div class="name">{{item.name}}</div>
+					<div class="info">
+						<div class="name" v-html="item.name"></div>
+						<div class="email" v-html="item.email"></div>
+					</div>
 				</div>
 				<div class="right">
-					<div v-if="hadAdd" class="talk">发消息</div>
+					<div v-if="item.isFriend" class="talk">发消息</div>
 					<div v-else class="add">添加</div>
 				</div>
 			</div>
@@ -18,16 +21,24 @@
 
 <script>
 import data from '../../common/js/data';
+import { mapState } from 'vuex'
 export default {
 	name: 'SearchList',
 	data() {
 		return {
-			hadAdd: false,
-			friends: []
+
 		}
 	},
 	mounted() {
 		this.getFriends();
+	},
+	computed: {
+		...mapState(['userArr']),
+		users: function () {
+
+			return this.userArr.length == 0 ? [] : this.userArr;
+		},
+
 	},
 	methods: {
 		getFriends: function () {
@@ -38,7 +49,8 @@ export default {
 				})
 
 			}
-		}
+		},
+
 	}
 }
 </script>
@@ -53,10 +65,10 @@ export default {
 	padding-top: 50px;
 
 	.type {
-		font-size: @font-size-base;
-		height: 5vh;
+		font-size: @font-size-lg;
+		height: 6vh;
 		float: left;
-		line-height: 5vh;
+		line-height: 6vh;
 		margin-left: 1.5rem;
 	}
 	.search-list {
@@ -64,7 +76,7 @@ export default {
 			background-color: @bg-color-hover;
 		}
 		width: 100vw;
-		height: 50px;
+		height: 65px;
 		padding: @spacing-row-sm @spacing-row-base;
 		display: flex;
 		align-items: center;
@@ -80,10 +92,21 @@ export default {
 				.img-size-sm();
 				border-radius: @border-radius-base;
 			}
-			.name {
+			.info {
 				font-size: @font-size-sm;
 				color: @text-color;
 				margin-left: 1rem;
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+
+				.name {
+					font-size: @font-size-base;
+					margin-bottom: 0.5rem;
+				}
+				.email {
+					color: @text-color-grey;
+				}
 			}
 		}
 		.right {
@@ -93,11 +116,10 @@ export default {
 			height: 100%;
 			div {
 				border-radius: @border-radius-base;
-				height: 60%;
-				line-height: 25px;
-				width: 50px;
-				font-size: @font-size-xs;
-				margin: auto 0;
+				height: 45%;
+				line-height: 26px;
+				width: 55px;
+				font-size: @font-size-sm;
 			}
 
 			.add {

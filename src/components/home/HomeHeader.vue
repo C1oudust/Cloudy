@@ -53,7 +53,8 @@ export default {
 			float: left;
 
 			img {
-				.img-size-sm(); // 32px
+				width: 32px; // 32px
+				height: 32px;
 				border-radius: @border-radius-sm;
 			}
 		}
