@@ -48,7 +48,7 @@ export default {
 
 		.left {
 			img {
-				.img-size-sm();
+				.img-size-header();
 				border-radius: @border-radius-sm;
 			}
 		}
