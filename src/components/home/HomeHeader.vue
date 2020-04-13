@@ -4,18 +4,16 @@
 			<div class="left">
 				<img src="../../../public/static/img/one.jpg" alt />
 			</div>
-			<div class="center">
-				<img src="../../assets/images/home/logo.png" alt />
-			</div>
+			<div class="center">消息</div>
 			<div class="right">
 				<router-link to="/Search">
 					<div class="search">
 						<img src="../../assets/images/home/search.png" alt />
 					</div>
 				</router-link>
-				<div class="add">
+				<!-- <div class="add">
 					<img src="../../assets/images/home/add.png" alt />
-				</div>
+				</div>-->
 			</div>
 		</div>
 	</div>
@@ -41,41 +39,41 @@ export default {
 		right: 0;
 		display: flex;
 		align-items: center;
-
+		justify-content: space-between;
 		width: 100vw;
 		height: 50px;
 		background: @bg-color;
 		border-bottom: solid 1px @border-color;
-		padding-left: @spacing-col-base;
-		padding-right: @spacing-col-base;
+		padding: 0 @spacing-col-base;
 
 		.left {
-			float: left;
-
 			img {
-				width: 32px; // 32px
-				height: 32px;
+				.img-size-sm();
 				border-radius: @border-radius-sm;
 			}
 		}
 		.center {
-			flex: 1;
-			padding-left: 20px;
-			img {
-				width: 44px;
-				height: 22px;
-			}
+			position: absolute;
+			margin-left: 50%;
+			transform: translateX(-50%);
+			font-size: @font-size-t;
+			// img {
+			// 	width: 44px;
+			// 	height: 22px;
+			// }
 		}
 		.right {
-			float: right;
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			height: 100%;
 			img {
 				.img-size-xs();
-				margin-right: @spacing-row-base;
+				// margin-right: 5px;
 			}
+			// .search {
+			// 	margin-right: 0.5rem;
+			// }
 		}
 	}
 }
