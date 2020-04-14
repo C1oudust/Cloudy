@@ -18,6 +18,10 @@
   width: 128px;
   height: 128px;
 }
+.img-more {
+  width: 26px;
+  height: 6px;
+}
 .ellipsisText {
   overflow: hidden;
   white-space: nowrap;

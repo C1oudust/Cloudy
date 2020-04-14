@@ -1,9 +1,11 @@
 <template>
 	<div class="container">
 		<div class="top-bar">
-			<div class="left">
-				<img src="../../../public/static/img/one.jpg" alt />
-			</div>
+			<router-link to="/UserDetail">
+				<div class="left">
+					<img src="../../../public/static/img/one.jpg" alt />
+				</div>
+			</router-link>
 			<div class="center">消息</div>
 			<div class="right">
 				<router-link to="/Search">
@@ -71,9 +73,9 @@ export default {
 				.img-size-xs();
 				// margin-right: 5px;
 			}
-			// .search {
-			// 	margin-right: 0.5rem;
-			// }
+			.search {
+				margin-right: 1rem;
+			}
 		}
 	}
 }
