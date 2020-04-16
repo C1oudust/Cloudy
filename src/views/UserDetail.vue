@@ -1,7 +1,7 @@
 <template>
 	<div class="container" @click="closePanel">
 		<div class="top-bar">
-			<div class="left">
+			<div class="left" @click="back">
 				<img src="../assets/images/detail/back.png" alt />
 			</div>
 
@@ -23,7 +23,7 @@
 					<div v-show="!add">
 						<div class="user-img">
 							<div class="userimg">
-								<img class="img" src="static/img/one.jpg" alt />
+								<img class="img" :src="userData.imgUrl" alt />
 								<div class="sex" :style="{background:sexColor}">
 									<img src="../assets/images/detail/male.png" alt />
 								</div>
@@ -31,7 +31,7 @@
 						</div>
 						<div class="nick">{{userData.nick}}</div>
 						<p class="remark" v-if="sendMsg" v-text="'('+userData.remark+')'"></p>
-						<p class="content">{{userData.content}}</p>
+						<p class="content">{{userData.sign}}</p>
 					</div>
 				</transition>
 				<div class="button add" @click="handleAddFriend" v-if="addFriend">加好友</div>
@@ -45,9 +45,9 @@
 		<transition name="slide" mode="out-in">
 			<div id="add-friend" class="add-friend" v-if="add">
 				<div class="user-img">
-					<img class="img" src="static/img/one.jpg" alt />
+					<img class="img" :src="userData.imgUrl" alt />
 				</div>
-				<div class="nick">{{user.nick}}</div>
+				<div class="nick">{{userData.nick}}</div>
 				<textarea
 					class="add-content"
 					name="content"
@@ -81,9 +81,6 @@ export default {
 	},
 	computed: {
 		...mapState(['userData', 'me']),
-		// isUser: function () {
-		// 	return this.me == this.$route.params.id
-		// },
 		addFriend: function () {
 			return this.isUser && !this.isFriend;
 		},
@@ -97,12 +94,15 @@ export default {
 			this.isUser = this.me == this.$route.params.id ? false : true;
 		}
 	},
-	mounted() {
-		console.log(this.$route.params.id);
+	beforeMount() {
+		// console.log(this.$route.params.id);
 		this.$store.commit('getUserData', this.$route.params.id)
 
 	},
 	methods: {
+		back() {
+			this.$router.go(-1)
+		},
 		handleAddFriend() {
 			this.add = true;
 		},
