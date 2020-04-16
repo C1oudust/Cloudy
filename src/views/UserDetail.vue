@@ -15,7 +15,7 @@
 		</div>
 		<main>
 			<div class="bg">
-				<div class="mask"></div>
+				<div :class="{blue:add}" class="mask"></div>
 				<img src="static/img/one.jpg" alt />
 			</div>
 			<div class="user">
@@ -198,6 +198,10 @@ export default {
 			.mask {
 				width: 100%;
 				height: 100%;
+			}
+
+			.blue {
+				background-color: rgba(50, 137, 218, 0.5);
 			}
 			img {
 				z-index: -1;
