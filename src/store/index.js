@@ -9,7 +9,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    userArr: [],
+    me: 1,
+    userData: {},
+    userArr: []
   },
   mutations: {
     searchUser(state, e) {
@@ -35,15 +37,20 @@ export default new Vuex.Store({
     isFriend(state, e) {
       let isFriend = 0;
       let friend = data.friends();
-      friend.forEach((item) => {
+      friend.forEach(item => {
         if (item.friend == e.id) isFriend = 1;
       });
       e.isFriend = isFriend;
     },
+    getUserData(state, e) {
+      if (e == data.me().id) {
+        state.userData = data.me();
+      }
+    },
     empty(state) {
       state.userArr = [];
-    },
+    }
   },
   actions: {},
-  modules: {},
+  modules: {}
 });

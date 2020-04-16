@@ -29,9 +29,9 @@
 								</div>
 							</div>
 						</div>
-						<div class="nick">{{user.nick}}</div>
-						<p class="remark" v-if="sendMsg" v-text="'('+user.remark+')'"></p>
-						<p class="content">{{user.content}}</p>
+						<div class="nick">{{userData.nick}}</div>
+						<p class="remark" v-if="sendMsg" v-text="'('+userData.remark+')'"></p>
+						<p class="content">{{userData.content}}</p>
 					</div>
 				</transition>
 				<div class="button add" @click="handleAddFriend" v-if="addFriend">加好友</div>
@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
 	name: 'UserDetail',
 	data() {
@@ -74,21 +75,31 @@ export default {
 			add: false,
 			userimg: 'userimg',
 			userimg2: 'userimg2',
-			user: {
-				nick: '云尘',
-				remark: '云尘',
-				content: '我是云尘，一个热爱生活的文艺青年。初次见面，请多关照！'
-			}
+
 
 		}
 	},
 	computed: {
+		...mapState(['userData', 'me']),
+		// isUser: function () {
+		// 	return this.me == this.$route.params.id
+		// },
 		addFriend: function () {
 			return this.isUser && !this.isFriend;
 		},
 		sendMsg: function () {
 			return this.isUser && this.isFriend;
 		},
+
+	},
+	watch: {
+		userData: function () {
+			this.isUser = this.me == this.$route.params.id ? false : true;
+		}
+	},
+	mounted() {
+		console.log(this.$route.params.id);
+		this.$store.commit('getUserData', this.$route.params.id)
 
 	},
 	methods: {
