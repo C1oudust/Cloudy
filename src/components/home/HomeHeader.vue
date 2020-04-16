@@ -1,9 +1,15 @@
 <template>
 	<div class="container">
 		<div class="top-bar">
+<<<<<<< HEAD
 			<router-link to="/UserDetail">
 				<div class="left">
 					<img src="../../../public/static/img/one.jpg" alt />
+=======
+			<router-link :to="'/UserDetail/'+ user.id">
+				<div class="left">
+					<img src="../../../public/static/img/one.jpg" alt />
+>>>>>>> home-header
 				</div>
 			</router-link>
 			<div class="center">消息</div>
@@ -24,6 +30,16 @@
 <script>
 export default {
 	name: 'HomeHeader',
+	data() {
+		return {
+			user: {
+				id: 1,
+				nick: '云尘',
+				remark: '云尘',
+				content: '我是云尘，一个热爱生活的文艺青年。初次见面，请多关照！'
+			}
+		}
+	}
 
 }
 </script>
