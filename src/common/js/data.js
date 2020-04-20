@@ -7,6 +7,7 @@ export default {
       imgUrl: 'one.jpg',
       remark: '云尘',
       sex: 1,
+      email: 'cloudust@cloudy.com',
       sign: '我是云尘，一个热爱生活的文艺青年。初次见面，请多关照！',
     };
 

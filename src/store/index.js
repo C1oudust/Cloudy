@@ -68,6 +68,22 @@ export default new Vuex.Store({
     empty(state) {
       state.userArr = [];
     },
+    setUserSign(state, e) {
+      state.userData.sign = e;
+      //TODO 调用后端api修改
+    },
+    setUserNick(state, e) {
+      state.userData.nick = e;
+      //TODO 调用后端api修改
+    },
+    setUserSex(state, e) {
+      state.userData.sex = e == '男' ? 1 : 2;
+      //TODO 调用后端api修改
+    },
+    setUserEmail(state, e) {
+      state.userData.email = e;
+      //TODO 调用后端api修改
+    },
   },
   actions: {},
   modules: {},

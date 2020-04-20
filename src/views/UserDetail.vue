@@ -6,11 +6,11 @@
 			</div>
 
 			<div class="right">
-				<!-- <router-link to="/More"> -->
-				<div v-show="!addFriend" class="more">
-					<img src="../assets/images/detail/more.png" alt />
-				</div>
-				<!-- </router-link> -->
+				<router-link to="/UserDetailMore">
+					<div v-show="!addFriend" class="more">
+						<img src="../assets/images/detail/more.png" alt />
+					</div>
+				</router-link>
 			</div>
 		</div>
 		<main>
