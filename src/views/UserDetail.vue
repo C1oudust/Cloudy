@@ -16,7 +16,7 @@
 		<main>
 			<div class="bg">
 				<div :class="{blue:add}" class="mask"></div>
-				<img src="static/img/one.jpg" alt />
+				<img :src="userData.imgUrl" alt />
 			</div>
 			<div class="user">
 				<transition name="fade">
@@ -25,12 +25,12 @@
 							<div class="userimg">
 								<img class="img" :src="userData.imgUrl" alt />
 								<div class="sex" :style="{background:sexColor}">
-									<img src="../assets/images/detail/male.png" alt />
+									<img :src="sex" alt />
 								</div>
 							</div>
 						</div>
 						<div class="nick">{{userData.nick}}</div>
-						<p class="remark" v-if="sendMsg" v-text="'('+userData.remark+')'"></p>
+						<p class="remark" v-if="sendMsg" v-text="'('+userData.name+')'"></p>
 						<p class="content">{{userData.sign}}</p>
 					</div>
 				</transition>
@@ -69,7 +69,6 @@ export default {
 	data() {
 		return {
 			unick: '云尘',
-			sexColor: "rgb(34, 158, 216)",// rgb(255,93,91)
 			isUser: true,
 			isFriend: false,
 			add: false,
@@ -87,11 +86,44 @@ export default {
 		sendMsg: function () {
 			return this.isUser && this.isFriend;
 		},
+		sex: function () {
+			if (this.userData.sex == 1) {
+				return require('../assets/images/detail/male.png');
+			}
+			else if (this.userData.sex == 2) {
+				return require('../assets/images/detail/female.png');
+
+			}
+			else {
+				return require('../assets/images/detail/unknow.png');
+
+			}
+		},
+		sexColor: function () {
+			if (this.userData.sex == 1) {
+				return "rgb(34, 158, 216)";
+			}
+			else if (this.userData.sex == 2) {
+				return "rgb(255,93,91)";
+
+			}
+			else {
+				return "rgba(243, 244, 246, 1)";
+
+			}
+		}
 
 	},
 	watch: {
 		userData: function () {
-			this.isUser = this.me == this.$route.params.id ? false : true;
+			var id = this.$route.params.id;
+			this.isUser = this.me == id ? false : true;
+			var friends = this.$store.getters.getFriends;
+			friends.forEach(item => {
+				if (item == id) {
+					this.isFriend = true;
+				}
+			})
 		}
 	},
 	beforeMount() {
@@ -282,7 +314,7 @@ export default {
 				color: @text-color-grey;
 			}
 			.content {
-				width: 50vw;
+				width: 256px;
 				height: 30vh;
 				word-wrap: normal;
 				margin-top: @spacing-col-base;
@@ -342,13 +374,12 @@ export default {
 				height: 128px;
 				border-radius: @border-radius-circle;
 				box-sizing: content-box;
-				// border: 2px solid @bg-color;
 				box-shadow: 2px 5px 20px 1px rgba(0, 0, 0, 0.3);
 			}
 		}
 		.nick {
 			padding-top: 22vh;
-			margin-right: 65vw;
+			margin-right: 60vw;
 			font-size: @font-size-lg;
 			color: @text-color;
 			line-height: 50px;
@@ -358,7 +389,7 @@ export default {
 			border: none;
 			border-radius: @border-radius-base;
 			background-color: rgba(241, 241, 241, 0.9);
-			width: 80%;
+			width: 80vw;
 			height: 32vh;
 			padding: 15px;
 			resize: none;

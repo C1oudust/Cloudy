@@ -12,6 +12,12 @@ export default new Vuex.Store({
     me: 1,
     userData: {},
     userArr: [],
+    friends: [],
+  },
+  getters: {
+    getFriends(state) {
+      return state.friends;
+    },
   },
   mutations: {
     searchUser(state, e) {
@@ -38,7 +44,10 @@ export default new Vuex.Store({
       let isFriend = 0;
       let friend = data.friends();
       friend.forEach((item) => {
-        if (item.friend == e.id) isFriend = 1;
+        if (item.friend == e.id) {
+          isFriend = 1;
+          state.friends.push(e.id);
+        }
       });
       e.isFriend = isFriend;
     },
@@ -52,7 +61,6 @@ export default new Vuex.Store({
           if (item.id == e) {
             state.userData = item;
             state.userData.imgUrl = './static/img/' + state.userData.imgUrl;
-            // console.log(state.userData.imgUrl);
           }
         });
       }
