@@ -76,6 +76,10 @@ export default new Vuex.Store({
       state.userData.nick = e;
       //TODO 调用后端api修改
     },
+    setUserRemark(state, e) {
+      state.userData.name = e;
+      //TODO 调用后端api修改
+    },
     setUserSex(state, e) {
       state.userData.sex = e == '男' ? 1 : 2;
       //TODO 调用后端api修改

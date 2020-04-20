@@ -10,31 +10,37 @@
 			<div class="profile" @click="editProfile">
 				<p>头像</p>
 				<img class="profile-img" :src="userData.imgUrl" alt />
-				<img v-show="canEdit" src="../assets/images/detail/edit.png" alt />
+				<img v-show="!isFriend" src="../assets/images/detail/edit.png" alt />
 			</div>
 			<div class="sign" @click="editSign">
 				<p>签名</p>
 				<p v-show="!isEditSign" class="sign-data">{{userData.sign}}</p>
 				<input @blur="editedSign" :value="userData.sign" v-if="isEditSign" ref="sign" type="text" />
-				<img v-if="canEdit" src="../assets/images/detail/edit.png" alt />
+				<img v-if="!isFriend" src="../assets/images/detail/edit.png" alt />
 			</div>
 			<div class="nick" @click="editNick">
 				<p>昵称</p>
 				<p v-show="!isEditNick">{{userData.nick}}</p>
 				<input @blur="editedNick" :value="userData.nick" v-if="isEditNick" ref="nick" type="text" />
-				<img v-if="canEdit" src="../assets/images/detail/edit.png" alt />
+				<img v-if="!isFriend" src="../assets/images/detail/edit.png" alt />
+			</div>
+			<div v-show="isFriend" class="nick" @click="editRemark">
+				<p>备注</p>
+				<p v-show="!isEditRemark">{{userData.name}}</p>
+				<input @blur="editedRemark" :value="userData.name" v-if="isEditRemark" ref="remark" type="text" />
+				<img v-if="isFriend" src="../assets/images/detail/edit.png" alt />
 			</div>
 			<div class="sex" @click="editSex">
 				<p>性别</p>
 				<p v-show="!isEditSex">{{sex}}</p>
 				<input @blur="editedSex" :value="sex" v-if="isEditSex" ref="sex" type="text" />
-				<img v-if="canEdit" src="../assets/images/detail/edit.png" alt />
+				<img v-if="!isFriend" src="../assets/images/detail/edit.png" alt />
 			</div>
 			<div class="email" @click="editEmail">
 				<p>邮箱</p>
 				<p v-show="!isEditEmail">{{userData.email}}</p>
 				<input @blur="editedEmail" :value="userData.email" v-if="isEditEmail" ref="emails" type="text" />
-				<img v-if="canEdit" src="../assets/images/detail/edit.png" alt />
+				<img v-if="!isFriend" src="../assets/images/detail/edit.png" alt />
 			</div>
 		</div>
 	</div>
@@ -49,6 +55,7 @@ export default {
 		return {
 			isEditSign: false,
 			isEditNick: false,
+			isEditRemark: false,
 			isEditSex: false,
 			isEditEmail: false,
 		}
@@ -68,8 +75,8 @@ export default {
 
 			}
 		},
-		canEdit: function () {
-			return this.userData.id == this.me;
+		isFriend: function () {
+			return this.userData.id != this.me;
 		}
 	},
 	methods: {
@@ -108,6 +115,16 @@ export default {
 		editedNick(e) {
 			this.isEditNick = false
 			this.$store.commit('setUserNick', e.currentTarget.value)
+		},
+		editRemark() {
+			this.isEditRemark = true;
+			this.$nextTick(() => {
+				this.$refs.remark.focus()
+			})
+		},
+		editedRemark(e) {
+			this.isEditRemark = false
+			this.$store.commit('setUserRemark', e.currentTarget.value)
 		},
 		editSex() {
 			if (this.userData.id != this.me) {
