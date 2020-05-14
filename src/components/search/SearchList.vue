@@ -76,7 +76,6 @@ export default {
 	align-items: center;
 	flex-direction: column;
 	padding-top: 50px;
-
 	.type {
 		font-size: @font-size-lg;
 		height: 6vh;
