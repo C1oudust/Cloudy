@@ -8,7 +8,7 @@ export default {
       remark: '云尘',
       sex: 1,
       email: 'cloudust@cloudy.com',
-      sign: '我是云尘，一个热爱生活的文艺青年。初次见面，请多关照！',
+      sign: '我是云尘，一个热爱生活的文艺青年。初次见面，请多关照！'
     };
 
     return me;
@@ -26,7 +26,7 @@ export default {
         email: 'xiaoming@cloudy.com',
         time: new Date(),
         sign: '如果还有明天，想怎样装扮你的脸。如果没有明天，要怎么说再见？',
-        content: '今天天气不错啊',
+        content: '今天天气不错啊'
       },
       {
         id: 2,
@@ -38,7 +38,7 @@ export default {
         email: 'xiaogang@cloudy.com',
         time: new Date(),
         sign: '篮球是我的最爱',
-        content: '出来玩吗？',
+        content: '出来玩吗？'
       },
       {
         id: 3,
@@ -50,7 +50,7 @@ export default {
         email: 'xiaohong@cloudy.com',
         time: new Date(),
         sign: '就像风儿一样',
-        content: '要不要去看电影？',
+        content: '要不要去看电影？'
       },
       {
         id: 4,
@@ -62,7 +62,7 @@ export default {
         email: 'xiaojiao@cloudy.com',
         time: new Date(),
         sign: '愿我成为你的光',
-        content: '今天你有约了嘛？',
+        content: '今天你有约了嘛？'
       },
       {
         id: 5,
@@ -74,8 +74,8 @@ export default {
         email: 'xiaoyu@cloudy.com',
         time: new Date(),
         sign: '羁绊，是什么意思？',
-        content: '门口新开了家奶茶店，很不错哦！',
-      },
+        content: '门口新开了家奶茶店，很不错哦！'
+      }
     ];
     return friendArr;
   },
@@ -85,17 +85,36 @@ export default {
     let isFriend = [
       {
         user: 1,
-        friend: 2,
+        friend: 2
       },
       {
         user: 1,
-        friend: 4,
+        friend: 4
       },
       {
         user: 1,
-        friend: 5,
-      },
+        friend: 5
+      }
     ];
     return isFriend;
   },
+  request: function() {
+    let list = [
+      {
+        id: 3,
+        nick: '火烈鸟',
+        time: new Date(),
+        content: '你好啊。',
+        imgUrl: 'two.jpg'
+      },
+      {
+        id: 6,
+        nick: '明天',
+        time: new Date(),
+        content: 'hello',
+        imgUrl: 'six.jpg'
+      }
+    ];
+    return list;
+  }
 };

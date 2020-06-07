@@ -1,15 +1,15 @@
 <template>
 	<div class="container">
 		<div class="apply">
-			<div class="friend-list">
+			<div class="friend-list" @click="toRequest">
 				<div class="left">
-					<span class="tip">9</span>
+					<span class="tip">{{requestNum}}</span>
 					<img src="../../../public/static/img/add_user.png" alt />
 				</div>
 				<div class="right">
 					<div class="info">
 						<div class="name">好友申请</div>
-						<div class="time">13:43</div>
+						<div class="time">{{requestTime}}</div>
 					</div>
 					<div class="msg">茫茫人海，相遇即是缘分！</div>
 				</div>
@@ -42,11 +42,14 @@ export default {
 	name: 'HomeList',
 	data() {
 		return {
-			friends: []
+			friends: [],
+			requestNum: 0,
+			requestTime: ''
 		}
 	},
 	mounted() {
 		this.getUserList();
+		this.getRequest();
 	},
 	methods: {
 		changeTime: function (date) {
@@ -60,6 +63,15 @@ export default {
 				})
 
 			}
+		},
+		getRequest: function () {
+			if (data.request()) {
+				this.requestNum = data.request().length;
+				this.requestTime = myfun.formatDataTime(data.request()[this.requestNum - 1].time)
+			}
+		},
+		toRequest: function () {
+			this.$router.push('Request')
 		}
 	}
 }

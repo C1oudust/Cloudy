@@ -3,7 +3,7 @@
 		<div class="left" @click="back">
 			<img src="../../assets/images/detail/back.png" alt />
 		</div>
-		<div class="center">消息</div>
+		<div class="center">好友申请</div>
 	</div>
 </template>
 
